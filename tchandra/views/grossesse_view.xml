@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_femme_enceinte_tree" model="ir.ui.view">
+        <field name="name">tchandra.grossesse.tree</field>
+        <field name="model">tchandra.grossesse</field>
+        <field name="arch" type="xml">
+            <tree string="Liste des Grossesses" limit="500">
+                    <field name="date_enregistrement" />
+                    <!-- <field name="enregistree_par" /> -->
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_grossesse_form" model="ir.ui.view">
+        <field name="name">tchandra.grossesse.form</field>
+        <field name="model">tchandra.grossesse</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire Grossesse">
+                <sheet>
+                    <group>
+                        <group string="Informations générales">
+                            <field name="date_enregistrement"/>
+                            <field name="enregistree_par" string ="Enregistrée par" readonly="1"/>
+                            <field name="has_given_birth" string ="A accouché" readonly="1"/>
+                            <field name="date_activite_accouchement" string ="Date d'identification de l'activité d'accouchement" readonly="1"/>
+                            <field name="date_accouchement" string ="Date accouchement" readonly="1"/>
+                        </group>
+                        <group string="CPN initiale">
+                                <field name="cpn_initiale"  string="CPN initiale" placeholder="CPN initiale"/>
+                        </group>
+                        <group string="Autres CPN">
+                                <field name="autre_cpn"  string="Autre CPN" placeholder="Autre CPN"/>
+                        </group>
+                        <group string="Visites non planifiées">
+                                <field name="visite_non_planifiee"  string="Visite non planifiée" placeholder="Visite non planifiée"/>
+                        </group>
+                        <group string="Accouchement">
+                                <field name="accouchement"  string="Accouchement" placeholder="Accouchement"/>
+                        </group>
+                        <group string="Sortie de suivi">
+                                <field name="sortie_suivi"  string="Sortie de suivi" placeholder="Sortie de suivi"/>
+                        </group>
+                        <group string="Suivi M1">
+                                <field name="suivi"  string="Suivi M1" placeholder="Suivi M1"/>
+                        </group>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="create_date" string="Crée le" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                            <field name="write_date" string="Mise à jour le" readonly="1" />
+                        </group>
+                    </page>
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

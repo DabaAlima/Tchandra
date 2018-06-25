@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_suivi_tree" model="ir.ui.view">
+        <field name="name">tchandra.suivi.tree</field>
+        <field name="model">tchandra.suivi</field>
+        <field name="arch" type="xml">
+            <tree string="Suivi" limit="500">
+                    <field name="id" />
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_suivi_form" model="ir.ui.view">
+        <field name="name">tchandra.suivi.form</field>
+        <field name="model">tchandra.suivi</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire Suivi">
+                <sheet>
+                    <group>
+                        <field name="statut_vital_femme"/>
+                        <field name="date_deces" attrs="{'invisible': [('statut_vital_femme', '=', 'vivante')]}" />
+                        <field name="statut_vital_enfant"/>
+                        <field name="date_deces_enfant" attrs="{'invisible': [('statut_vital_enfant', '=', 'vivant')]}" />
+                        <group string="Poids">
+                           <field name="poids_enfant" attrs="{'invisible': [('poids_non_realise', '=', True)]}" />
+                            <field name="poids_non_realise"/> 
+                        </group>
+                        <group string="Taille">
+                            <field name="taille_enfant" attrs="{'invisible': [('taille_non_realise', '=', True)]}" />
+                            <field name="taille_non_realise"/>
+                        </group>
+                        <group string="Périmètre crânien">
+                            <field name="perimetre_cranien" attrs="{'invisible': [('perimetre_cranien_non_realise', '=', True)]}" />
+                            <field name="perimetre_cranien_non_realise"/>
+                        </group>
+                        <field name="bcg"/>
+                        <field name="polio"/>
+                        <field name="hepatite_b"/>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                    <page string="Formulaire">
+                        <group>
+                            <field name="date_creation"/>
+                            <field name="date_derniere_modification"/>
+                        </group>
+                    </page>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                        </group>
+                    </page>
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

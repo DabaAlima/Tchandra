@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_visite_non_planifiee_tree" model="ir.ui.view">
+        <field name="name">tchandra.visite.non.planifiee.tree</field>
+        <field name="model">tchandra.visite.non.planifiee</field>
+        <field name="arch" type="xml">
+            <tree limit="500">
+                    <field name="numero_visite" />
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_visite_non_planifiee_form" model="ir.ui.view">
+        <field name="name">tchandra.visite.non.planifiee.form</field>
+        <field name="model">tchandra.visite.non.planifiee</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire visite non planifiée">
+                <sheet>
+                    <group>
+                        <group string="Examen clinique">
+                            <group string="Poids">
+                               <field name="poids" attrs="{'invisible': [('poids_non_realise', '=', True)]}" />
+                                <field name="poids_non_realise"/> 
+                            </group>
+                            <group string="Tension artérielle">
+                                <field name="tension_arterielle_systolique" attrs="{'invisible': [('tension_arterielle_non_realise', '=', True)]}" />
+                                <field name="tension_arterielle_diastolique" attrs="{'invisible': [('tension_arterielle_non_realise', '=', True)]}" />
+                                <field name="tension_arterielle_non_realise"/>
+                            </group>
+                            <group string="Température">
+                                <field name="temperature" attrs="{'invisible': [('temperature_non_realise', '=', True)]}" />
+                                <field name="temperature_non_realise"/>
+                            </group>
+                        </group>
+                        <group string="Examens complémentaires">
+                                <group string="Taux d'hémoglobine">
+                                    <field name="taux_hemoglobine" attrs="{'invisible': [('taux_hemoglobine_non_realise', '=', True)]}" />
+                                    <field name="taux_hemoglobine_non_realise" />
+                                </group>
+                                <field name="test_paludisme"/>
+                        </group>
+                        <group string="Référencement">
+                                <field name="referencement"/>
+                                <field name="motif_referencement" attrs="{'invisible':[('referencement', '=', 'non')]}"/>
+                        </group>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                    <page string="Formulaire">
+                        <group>
+                            <field name="date_creation"/>
+                            <field name="date_derniere_modification"/>
+                        </group>
+                    </page>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                        </group>
+                    </page>
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

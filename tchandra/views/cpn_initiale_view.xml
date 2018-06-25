@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_cpn_initiale_tree" model="ir.ui.view">
+        <field name="name">tchandra.cpn.initiale.tree</field>
+        <field name="model">tchandra.cpn.initiale</field>
+        <field name="arch" type="xml">
+            <tree string="Consultations prénatales initiales" limit="500">
+                    <field name="id" />
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_cpn_initiale_form" model="ir.ui.view">
+        <field name="name">tchandra.cpn.initiale.form</field>
+        <field name="model">tchandra.cpn.initiale</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire CPN initiale">
+                <sheet>
+                    <group>
+                        <group string="Examen clinique">
+                            <group string="Date des dernières règles">
+                                <field name="jour_date_dernieres_regles" attrs="{'invisible': [('date_dernieres_regles', '=', True)]}" />
+                                <field name="mois_date_dernieres_regles" attrs="{'invisible': [('date_dernieres_regles', '=', True)]}" />
+                                <field name="annee_date_dernieres_regles" attrs="{'invisible': [('date_dernieres_regles', '=', True)]}" />
+                                <field name="date_dernieres_regles"/>
+                            </group>
+                            <group string="Poids">
+                               <field name="poids" attrs="{'invisible': [('poids_non_realise', '=', True)]}" />
+                                <field name="poids_non_realise"/> 
+                            </group>
+                            <group string="Taille">
+                                <field name="taille" attrs="{'invisible': [('taille_non_realise', '=', True)]}" />
+                                <field name="taille_non_realise"/>
+                            </group>
+                            <group string="Tension artérielle">
+                                <field name="tension_arterielle_systolique" attrs="{'invisible': [('tension_arterielle_non_realise', '=', True)]}" />
+                                <field name="tension_arterielle_diastolique" attrs="{'invisible': [('tension_arterielle_non_realise', '=', True)]}" />
+                                <field name="tension_arterielle_non_realise"/>
+                            </group>
+                            <group string="Température">
+                                <field name="temperature" attrs="{'invisible': [('temperature_non_realise', '=', True)]}" />
+                                <field name="temperature_non_realise"/>
+                            </group>
+                            <group string="Hauteur utérine">
+                                <field name="hauteur_uterine" attrs="{'invisible': [('hauteur_uterine_non_realise', '=', True)]}" />
+                                <field name="hauteur_uterine_non_realise"/>
+                            </group>
+                            <field name="grossesse_multiple"/>
+                            <field name="nombre_foetus" attrs="{'invisible': [('grossesse_multiple', 'in', ['non', 'non_determine'])]}"/>
+                            <field name="bruits_cardiaques_foetaux"/>
+                            <field name="bruits_cardiaques_foetaux_deux" attrs="{'invisible': [('nombre_foetus', 'not in', ['2', '3', '4', '5', '6', '7'])]}"/>
+                            <field name="bruits_cardiaques_foetaux_trois" attrs="{'invisible': [('nombre_foetus', 'not in', ['3', '4', '5', '6', '7'])]}"/>
+                            <field name="bruits_cardiaques_foetaux_quatre" attrs="{'invisible': [('nombre_foetus', 'not in', ['4', '5', '6', '7'])]}"/>
+                            <field name="bruits_cardiaques_foetaux_cinq" attrs="{'invisible': [('nombre_foetus', 'not in', ['5', '6', '7'])]}"/>
+                            <field name="bruits_cardiaques_foetaux_six" attrs="{'invisible': [('nombre_foetus', 'not in', ['6', '7'])]}"/>
+                            <field name="bruits_cardiaques_foetaux_sept" attrs="{'invisible': [('nombre_foetus', '!=', '7')]}" />
+                            <field name="position"/>
+                        </group>
+                        <group string="Examens complémentaires">
+                                <group string="Taux d'hémoglobine">
+                                    <field name="taux_hemoglobine" attrs="{'invisible': [('taux_hemoglobine_non_realise', '=', True)]}" />
+                                    <field name="taux_hemoglobine_non_realise" />
+                                </group>
+                                <field name="glycosurie"/>
+                                <field name="proteinurie"/>
+                                <field name="test_paludisme"/>
+                                <field name="test_vih"/>
+                                <field name="test_syphilis"/>
+                        </group>
+                        <group string="Mesures préventives">
+                                <field name="fer_folate"/>
+                                <field name="moustiquaire"/>
+                                <field name="traitement_palu"/>
+                                <field name="deparasitage"/>
+                        </group>
+                        <group string="Référencement">
+                                <field name="referencement"/>
+                                <field name="motif_referencement" attrs="{'invisible':[('referencement', '=', 'non')]}"/>
+                        </group>
+                        <group string="Préparation de l'accouchement">
+                                <field name="lieu_accouchement_conseille"/>
+                                <field name="autre_lieu_accouchement" attrs="{'invisible': [('lieu_accouchement_conseille', 'in', ['centre_sante', 'hopital_district'])]}"/>
+                                <field name="explications_autre_lieu" attrs="{'invisible': [('lieu_accouchement_conseille', 'in', ['centre_sante', 'hopital_district'])]}"/>
+                        </group>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                    <page string="Formulaire">
+                        <group>
+                            <field name="date_creation"/>
+                            <field name="date_derniere_modification"/>
+                        </group>
+                    </page>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                        </group>
+                    </page>
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

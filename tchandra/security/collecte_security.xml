@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="module_category_dons" model="ir.module.category">
+            <field name="name">Collecte Dons</field>
+            <field name="sequence">200</field>
+        </record>
+        <record id="crm_alima_group_collecte" model="res.groups">
+            <field name="name">Utilisateur</field>
+            <field name="category_id" ref="module_category_dons"/>
+        </record>
+    </data>
+</odoo>

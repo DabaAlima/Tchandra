@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_utilisateur_tree" model="ir.ui.view">
+        <field name="name">tchandra.utilisateur.tree</field>
+        <field name="model">tchandra.utilisateur</field>
+        <field name="arch" type="xml">
+            <tree string="Liste des Utilisateurs" limit="500">
+                    <field name="id" />
+                    <field name="name" string="code"/>
+                    <field name="firstname" string ="prénom"/>
+                    <field name="lastname" string="nom"/>
+                    <field name="type_de_personne" />
+                    <field name="age" />
+                    <field name="village_residence" />
+                    <field name="niveau_instruction" />
+                    <field name="centre_sante" />
+                    <field name="profession" />
+                    <field name="fingerprint" />
+                    <field name="dateEnregistrement" />
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_utilisateur_form" model="ir.ui.view">
+        <field name="name">tchandra.utilisateur.form</field>
+        <field name="model">tchandra.utilisateur</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire Utilisateur">
+                <sheet>
+                    <!-- <div class="oe_button_box" name="button_box">
+                    <button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book" type="object">
+                        <field name="attachment_number" widget="statinfo" string="Documents"/>
+                    </button>
+                    <button type="object" class="oe_stat_button"
+                                name="action_get_dons_tree_views" icon="fa-heart-o"
+                                context="{'search_default_donateur': active_id, 'default_donateur': active_id}">
+                        <field name="nombredonsstat" widget="statinfo" string="Dons"/>
+                    </button>
+                    <button type="object" class="oe_stat_button"
+                                name="action_get_dons_form_views" icon="fa-plus" string="nouveau don"
+                                context="{'search_default_donateur': active_id, 'default_donateur': active_id}">
+                    </button>
+
+                </div> -->
+                    <div class="oe_title" name="title">
+                         <h1>
+                            <!-- <field name="firstname" attrs="{'required': [('type_de_personne', '=', 'Personne physique')], 'invisible': [('type_de_personne', '=', 'Personne morale')]}" placeholder="Prénom"/><br/> -->
+                            <field name="firstname" attrs="{'required': True}" placeholder="Prénom"/><br/>
+                            <field name="lastname" placeholder="Nom" attrs="{'required': True}"/><br/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Informations générales">
+                            <field name="type_de_personne" string ="Type de Personne"/>
+                            <field name="age" string ="Age"/>
+                            <field name="village_residence" string ="Village de résidence" attrs="{'invisible': [('type_de_personne', '=', 'Personnel de sante')]}"/>
+                            <field name="niveau_instruction" string ="Niveau d'instruction" attrs="{'invisible': [('type_de_personne', '=', 'Personnel de sante')]}"/>
+                            <field name="centre_sante" string ="Centre de santé de rattachement" attrs="{'invisible': [('type_de_personne', '=', 'Tchandra')]}"/>
+                            <field name="profession" string ="Profession" attrs="{'invisible': [('type_de_personne', 'in', ['Tchandra', 'Relais communautaire'])]}"/>
+                            <field name="dateEnregistrement" string ="Date d'enregistrement"/>
+                            <field name="fingerprint" string ="Empreinte digitale"/>
+                        </group>
+                        <!-- <group string="Informations donateur">
+                                <field name="statut"/>
+                                <field name="idcontact"  attrs="{'invisible': [('statut', '!=', 'Doublon')]}" options="{'no_create': True}"/>
+                                <field name="statut_PA"  readonly="1"/>
+                                <field name="Type_arret_PA"  />
+                        </group> -->
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                        <page name="page_general_info" string="Adresse et Coordonnées">
+                            <group name="group_contact_info" >
+                                <!-- <group name="group_contact_left" string=" Adresse 1">
+                                    <label for="complementnom" string="Adresse 1" />
+                                    <div class="o_address_format">
+                                        <field name="complementnom" placeholder="Libellé de la voie" class="o_address_street"/>
+                                        <field name="complementadresse" placeholder="Complément adresse" class="o_address_street"/>
+                                        <field name="codebis" placeholder="Code bis" class="o_address_street"/>
+                                        <field name="hammeau" placeholder="Hammeau Lieu-dit" class="o_address_street"/>
+                                        <field name="codepostale" placeholder="Code postal" class="o_address_street"/>
+                                        <field name="ville" placeholder="Ville" class="o_address_street"/>
+                                        <field name="country_id" placeholder="Pays" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                    </div>
+                                </group> -->
+                                <group name="group_contact_right" string="Coordonnées">
+                                    <!-- <field name="email" widget="email"  string="Email 1" />
+                                    <field name="email2" widget="email"  string="Email 2" />
+                                    <field name="personal_fone" string ="Téléphone personnel 1"/>
+                                    <field name="personal_fone2" string ="Téléphone personnel 2"/> -->
+                                    <field name="mobile" widget="phone" string="Portable 1"/>
+                                    <field name="mobile2" widget="phone" string="Portable 2"/>
+                                    <field name="phone" widget="phone" string="Téléphone professionel"/>
+                                    <!-- <field name="fax" string="Fax"/> -->
+                                </group>
+                                <!-- <group name="group_contact_left" string=" Adresse 2">
+                                    <label for="complementnom2" string="Adresse 2" />
+                                    <div class="o_address_format">
+                                        <field name="complementnom2" placeholder="Libellé de la voie" class="o_address_street"/>
+                                        <field name="complementadresse2" placeholder="Complément adresse" class="o_address_street"/>
+                                        <field name="codebis2" placeholder="Code bis" class="o_address_street"/>
+                                        <field name="hammeau2" placeholder="Hammeau Lieu-dit" class="o_address_street"/>
+                                        <field name="codepostale2" placeholder="Code postal" class="o_address_street"/>
+                                        <field name="ville2" placeholder="Ville" class="o_address_street"/>
+                                        <field name="country_id2" placeholder="Pays" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                    </div>
+                                </group> -->
+                            </group>
+                        </page>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="create_date" string="Crée le" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                            <field name="write_date" string="Mise à jour le" readonly="1" />
+                        </group>
+                    </page>
+                    <!-- <page string="Historique dons">
+                        <group>
+                            <field name="datePremierDon" string="1er don : date" readonly="1" />
+                            <field name="montantPremierDon" string="1er don : montant" readonly="1" />
+                            <field name="codemediaPremierDon" string="1er don : code media" readonly="1" />
+                            <field name="dateDernierDon" string="Dernier don : date" readonly="1" />
+                            <field name="montantDernierDon" string="Dernier don : montant" readonly="1" />
+                            <field name="codemediaDernierDon" string="Dernier don : code media" readonly="1" />
+                            <field name="datePremierDonHPA" string="1er don hors PA : date" readonly="1" />
+                            <field name="montantPremierDonHPA" string="1er don hors PA : montant" readonly="1" />
+                            <field name="codemediaPremierDonHPA" string="1er don hors PA : code media" readonly="1" />
+                            <field name="dateDernierDonHPA" string="Dernier don hors PA : date" readonly="1" />
+                            <field name="montantDernierDonHPA" string="Dernier don hors PA : montant" readonly="1" />
+                            <field name="codemediaDernierDonHPA" string="Dernier don hors PA : code media" readonly="1" />
+                            <field name="nombreDons" string="Nombre total de dons" readonly="1" />
+                            <field name="nombreDonsHPA" string="Nombre total de dons hors PA" readonly="1" />
+                            <field name="don_moy" string="Montant Moyen" readonly="1" />
+                            <field name="don_moyHPA" string="Montant moyen hors PA" readonly="1" />
+                        </group>
+                    </page> -->
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                        widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+            </form>
+        </field>
+    </record>
+    <record id="tchandra_view_filter_utilisateur"
+    model="ir.ui.view">
+    <field name="model">tchandra.utilisateur</field>
+        <field name="arch" type="xml">
+        <search>
+        <field name="id"/>
+        <field name="name" string="code"/>
+        <field name="lastname" string="nom"/>
+        <field name="firstname" string="prenom"/>
+        <field name="type_de_personne" string="type_de_personne"/>
+        <!-- <filter name="filter_doublon" string="Doublon"
+        domain="[('statut','=','Doublon')]"/>
+        <filter name="filter_actif" string="Actif"
+        domain="[('statut','=','Actif')]"/>
+        <separator/>
+        <filter name="group_user" string="Créateur"
+            context="{'group_by': 'create_uid'}"/>
+        <filter name="group_user" string="Statut"
+            context="{'group_by': 'statut'}"/>
+        <filter name="group_title" string="Civilité"
+            context="{'group_by': 'title'}"/>
+        <filter name="group_sexe" string="Sexe"
+            context="{'group_by': 'sexe'}"/>
+        <filter name="group_donateur_potentiel" string="Grand donateur potentiel" domain="[]"
+            context="{'group_by':'grand_donateur_potentiel'}" /> -->
+        <filter name="group_type_de_personne" string="Type d'utilisateur"
+            context="{'group_by': 'type_de_personne'}"/>
+
+        </search>
+    </field>
+</record>
+    <!-- <record id="crm_alima_donateur_graph" model="ir.ui.view">
+        <field name="model">crm.alima.donateur</field>
+        <field name="arch" type="xml">
+        <graph type="bar">
+        <field name="statut" />
+        <field name="cumulDonTotal" type="measure" />
+        </graph>
+        </field>
+    </record> -->
+    <record id="tchandra_utilisateur_kanban" model="ir.ui.view">
+        <field name="model">tchandra.utilisateur</field>
+        <field name="arch" type="xml">
+        <!--kanban default_group_by="statut" class="o_kanban_small_column" -->
+        <kanban>
+
+            <templates>
+                <t t-name="kanban-box">
+                    <div>
+                        <strong>
+                            ID: <a type="open"><field name="id" /></a>
+                        <ul>
+                            <li>Code: <field name="name" /></li>
+                            <li>Prénom: <field name="firstname" /></li>
+                            <li>Nom: <field name="lastname" /></li>
+                             <li>Type: <field name="type_de_personne" /></li>
+                        </ul>
+                        </strong>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+        </field>
+    </record>
+
+    <!-- Resume and Letters -->
+    <!-- <record id="ir_attachment_view_search_inherit_crm_alima" model="ir.ui.view">
+        <field name="name">ir.attachment.search.inherit.crm.alima</field>
+        <field name="model">ir.attachment</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="base.view_attachment_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_date']" position="after">
+                <field name="index_content" string="Content"/>
+            </xpath>
+            <xpath expr="//filter[@name='my_documents_filter']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='url_filter']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='binary_filter']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+        </field>
+    </record> -->
+
+</odoo>

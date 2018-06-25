@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <data noupdate="1">
+   
+   <record model="ir.sequence" id="seq_num_cpn">
+       <field name="name">Numéro CPN</field>
+       <field name="code">tchandra.cpn.autre</field>
+   </record>
+   <record model="ir.sequence" id="seq_visite_non_planifiee">
+       <field name="name">Numéro de visite non planifiée</field>
+       <field name="code">tchandra.visite.non.planifiee</field>
+   </record>
+ 
+ </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_sortie_suivi_tree" model="ir.ui.view">
+        <field name="name">tchandra.sortie.suivi.tree</field>
+        <field name="model">tchandra.sortie.suivi</field>
+        <field name="arch" type="xml">
+            <tree string="Sortie suivi" limit="500">
+                    <field name="id" />
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_sortie_suivi_form" model="ir.ui.view">
+        <field name="name">tchandra.sortie.suivi.form</field>
+        <field name="model">tchandra.sortie.suivi</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire Sortie suivi">
+                <sheet>
+                    <group>
+                        <field name="motif_sortie_suivi"/>
+                        <group string="Date de sortie du suivi">
+                            <field name="jour_date_sortie" attrs="{'invisible': [('date_sortie_non_connue', '=', True)]}" />
+                            <field name="mois_date_sortie" attrs="{'invisible': [('date_sortie_non_connue', '=', True)]}" />
+                            <field name="annee_date_sortie" attrs="{'invisible': [('date_sortie_non_connue', '=', True)]}" />
+                            <field name="date_sortie_non_connue"/>
+                        </group>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                    <page string="Formulaire">
+                        <group>
+                            <field name="date_creation"/>
+                            <field name="date_derniere_modification"/>
+                        </group>
+                    </page>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                        </group>
+                    </page>
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

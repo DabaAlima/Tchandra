@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_utilisateur_tchandra,access_utilisateur_tchandra,model_tchandra_utilisateur,,1,1,1,1
+access_tchandra_femme_enceinte,access_tchandra_femme_enceinte,model_tchandra_femme_enceinte,,1,1,1,1
+access_tchandra_grossesse,access_tchandra_grossesse,model_tchandra_grossesse,tchandra.group_user_tchandra,1,1,1,1
+access_tchandra_cpn_initiale,access_tchandra_cpn_initiale,model_tchandra_cpn_initiale,,1,1,1,1
+access_tchandra_cpn_autre,access_tchandra_cpn_autre,model_tchandra_cpn_autre,,1,1,1,1
+access_tchandra_visite_non_planifiee,access_tchandra_visite_non_planifiee,model_tchandra_visite_non_planifiee,,1,1,1,1
+access_tchandra_accouchement,access_tchandra_accouchement,model_tchandra_accouchement,,1,1,1,1
+access_tchandra_sortie_suivi,access_tchandra_sortie_suivi,model_tchandra_sortie_suivi,,1,1,1,1
+access_tchandra_suivi,access_tchandra_suivi,model_tchandra_suivi,,1,1,1,1

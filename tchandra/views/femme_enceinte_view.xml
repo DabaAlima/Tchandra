@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_femme_enceinte_tree" model="ir.ui.view">
+        <field name="name">tchandra.femme.enceinte.tree</field>
+        <field name="model">tchandra.femme.enceinte</field>
+        <field name="arch" type="xml">
+            <tree string="Liste des Femmes enceintes" limit="500">
+                    <field name="id" />
+                    <field name="age" />
+                    <field name="village_residence" />
+                    <field name="niveau_instruction" />
+                    <field name="gestite" />
+                    <field name="parite" />
+                    <field name="fingerprint" />
+                    <field name="dateEnregistrement" />
+                    <!-- <field name="enregistree_par" />
+                    <field name="has_given_birth" />
+                    <field name="date_activite_accouchement" />
+                    <field name="date_accouchement" /> -->
+                    <field name="grossesse"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_femme_enceinte_form" model="ir.ui.view">
+        <field name="name">tchandra.femme.enceinte.form</field>
+        <field name="model">tchandra.femme.enceinte</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire Femme enceinte">
+                <sheet>
+                    <group>
+                        <group string="Informations générales">
+                            <field name="age" string ="Age"/>
+                            <field name="village_residence" string ="Village de résidence"/>
+                            <field name="niveau_instruction" string ="Niveau d'instruction"/>
+                            <field name="gestite" string ="Gestité"/>
+                            <field name="parite" string ="Parité"/>
+                            <field name="dateEnregistrement" string ="Date d'enregistrement de la femme enceinte"/>
+                            <field name="fingerprint" string ="Empreinte digitale"/>
+                            <!-- <field name="enregistree_par" string ="Enregistrée par" readonly="1"/>
+                            <field name="has_given_birth" string ="A accouché" readonly="1"/>
+                            <field name="date_activite_accouchement" string ="Date d'identification de l'activité d'accouchement" readonly="1"/>
+                            <field name="date_accouchement" string ="Date accouchement" readonly="1"/> -->
+                        </group>
+                        <group string="Grossesses">
+                                <field name="grossesse"  string="Grossesse" placeholder="Grossesse"/>
+                        </group>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                    <page string="Administration">
+                        <group>
+                            <field name="create_uid" string="Crée par" readonly="1" />
+                            <field name="create_date" string="Crée le" readonly="1" />
+                            <field name="write_uid" string="Mise à jour par" readonly="1" />
+                            <field name="write_date" string="Mise à jour le" readonly="1" />
+                        </group>
+                    </page>
+                    <!-- <page string="Historique dons">
+                        <group>
+                            <field name="datePremierDon" string="1er don : date" readonly="1" />
+                            <field name="montantPremierDon" string="1er don : montant" readonly="1" />
+                            <field name="codemediaPremierDon" string="1er don : code media" readonly="1" />
+                            <field name="dateDernierDon" string="Dernier don : date" readonly="1" />
+                            <field name="montantDernierDon" string="Dernier don : montant" readonly="1" />
+                            <field name="codemediaDernierDon" string="Dernier don : code media" readonly="1" />
+                            <field name="datePremierDonHPA" string="1er don hors PA : date" readonly="1" />
+                            <field name="montantPremierDonHPA" string="1er don hors PA : montant" readonly="1" />
+                            <field name="codemediaPremierDonHPA" string="1er don hors PA : code media" readonly="1" />
+                            <field name="dateDernierDonHPA" string="Dernier don hors PA : date" readonly="1" />
+                            <field name="montantDernierDonHPA" string="Dernier don hors PA : montant" readonly="1" />
+                            <field name="codemediaDernierDonHPA" string="Dernier don hors PA : code media" readonly="1" />
+                            <field name="nombreDons" string="Nombre total de dons" readonly="1" />
+                            <field name="nombreDonsHPA" string="Nombre total de dons hors PA" readonly="1" />
+                            <field name="don_moy" string="Montant Moyen" readonly="1" />
+                            <field name="don_moyHPA" string="Montant moyen hors PA" readonly="1" />
+                        </group>
+                    </page> -->
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="tchandra_view_filter_femme_enceinte"
+    model="ir.ui.view">
+    <field name="model">tchandra.femme.enceinte</field>
+        <field name="arch" type="xml">
+        <search>
+        <field name="id"/>
+        <field name="age" string="age"/>
+        <field name="village_residence" string="village_residence"/>
+        <!-- <field name="enregistree_par" string="enregistree_par"/>
+        <field name="has_given_birth" string="has_given_birth"/> -->
+        <!-- <filter name="filter_doublon" string="Doublon"
+        domain="[('statut','=','Doublon')]"/>
+        <filter name="filter_actif" string="Actif"
+        domain="[('statut','=','Actif')]"/>
+        <separator/>
+        <filter name="group_user" string="Créateur"
+            context="{'group_by': 'create_uid'}"/>
+        <filter name="group_user" string="Statut"
+            context="{'group_by': 'statut'}"/>
+        <filter name="group_title" string="Civilité"
+            context="{'group_by': 'title'}"/>
+        <filter name="group_sexe" string="Sexe"
+            context="{'group_by': 'sexe'}"/>
+        <filter name="group_donateur_potentiel" string="Grand donateur potentiel" domain="[]"
+            context="{'group_by':'grand_donateur_potentiel'}" /> -->
+        <filter name="group_village_residence" string="Village de résidence"
+            context="{'group_by': 'village_residence'}"/>
+
+        </search>
+    </field>
+</record>
+    <!-- <record id="crm_alima_donateur_graph" model="ir.ui.view">
+        <field name="model">crm.alima.donateur</field>
+        <field name="arch" type="xml">
+        <graph type="bar">
+        <field name="statut" />
+        <field name="cumulDonTotal" type="measure" />
+        </graph>
+        </field>
+    </record> -->
+    <record id="tchandra_femme_enceinte_kanban" model="ir.ui.view">
+        <field name="model">tchandra.femme.enceinte</field>
+        <field name="arch" type="xml">
+        <!--kanban default_group_by="statut" class="o_kanban_small_column" -->
+        <kanban>
+
+            <templates>
+                <t t-name="kanban-box">
+                    <div>
+                        <strong>
+                            ID: <a type="open"><field name="id" /></a>
+                        <ul>
+                            <li>Age: <field name="age" /></li>
+                             <li>Village de résidence: <field name="village_residence" /></li>
+                             <!-- <li>Enregistrée par: <field name="enregistree_par" /></li>
+                             <li>A accouché: <field name="has_given_birth" /></li> -->
+                        </ul>
+                        </strong>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+        </field>
+    </record>
+
+    <!-- Resume and Letters -->
+    <!-- <record id="ir_attachment_view_search_inherit_crm_alima" model="ir.ui.view">
+        <field name="name">ir.attachment.search.inherit.crm.alima</field>
+        <field name="model">ir.attachment</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="base.view_attachment_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_date']" position="after">
+                <field name="index_content" string="Content"/>
+            </xpath>
+            <xpath expr="//filter[@name='my_documents_filter']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='url_filter']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='binary_filter']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+        </field>
+    </record> -->
+
+</odoo>

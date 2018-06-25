@@ -1,0 +1,91 @@
+<odoo>
+    <report
+    id="donateur_alima"
+    model="crm.alima.donateur"
+    string="Donateur"
+    report_type="qweb-pdf"
+    name="crm_alima.donateur_report"/>
+    <record id="donateur_alima" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="report.paperformat_euro"/>
+    </record>
+        <template id="donateur_report">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="r">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div>
+                             <table width="705" border="1">
+                                    <tbody>
+                                    <tr>
+                                    <td colspan="2" width="705"><br />
+                                    <p><strong>Reçu FISCAL</strong></p>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2" width="705">
+                                    <p><strong>N° d'ordre: </strong><strong>ALICO1600607</strong></p>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td width="544">
+                                    <p><strong>Bénéficiare des versements</strong></p>
+                                    <p><strong>ALIMA</strong></p>
+                                    <p><strong>Adresse: </strong>47 avenue Pasteur 93100 MONTREUIL</p>
+                                    <p><strong>Objet: </strong>Aide alimentaire ou soins médicaux à des personnes en difficulté</p>
+                                    <p><strong>Statut:</strong> Association humanitaire de loi 1901 à but non lucratif (1<sup>ère</sup> publication au J.O. du 13 juin 2009)</p>
+                                    </td>
+                                    <td width="160"></td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2" width="705">
+                                    <p>ALIMA certifie sur l'honneur que les dons et versements qu'elle reçoit ouvrent droit à la réduction d'impôts prévue aux articles 200 et 238 bis du CGI.</p>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2" width="705">
+                                    <p></p>
+                                    <p>ALIMA reconnaît avoir reçu au titre des dons et versements ouvrant droit à la réduction d'impôts:</p>
+                                    <p></p>
+                                    <p><strong>La somme de :</strong> 15 €</p>
+                                    <p><strong>Somme en toutes lettres: </strong>quinze euros</p>
+                                    <p><strong></strong></p>
+                                    <p><strong>Date de paiement : </strong>2016</p>
+                                    <p></p>
+                                    <p><strong>Forme du don : </strong>Don manuel</p>
+                                    <p><strong>Nature du don: </strong>Numéraire</p>
+                                    <p><strong>Mode de versement: </strong>Virement bancaire</p>
+                                    <p></p>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2" width="705">
+                                    <p><strong>Donateur</strong></p>
+                                    <p><strong>Elimane NDOME</strong></p>
+                                    <p><strong>36 bambilor</strong></p>
+                                    <p><strong>57290 Dakar</strong></p>
+                                    <p><strong></strong></p>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2" width="705">
+                                    <p><strong>Date et signature</strong></p>
+                                    <p><strong></strong></p>
+                                    <p><strong>11 avril 2017</strong></p>
+                                    <p>Dr Richard Kojan</p>
+                                    <p>Président</p>
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                        </div>
+                            <h1>NOM: <span t-esc="r.lastname"/></h1>
+                            <h2>Prenom</h2>
+                            <span t-raw="r.firstname"/>
+                            <h2>Date de Naissance</h2>
+                            <span t-raw="r.dateNaissance"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+</odoo>

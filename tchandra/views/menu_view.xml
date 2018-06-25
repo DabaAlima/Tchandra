@@ -1,0 +1,41 @@
+<odoo>
+     <!-- Action to open To-do Task list -->
+    <act_window id="action_tchandra_utilisateur"
+    name="Utilisateurs"
+    res_model="tchandra.utilisateur"
+    view_mode="kanban,tree,form,graph"/>
+
+    <act_window id="action_tchandra_femme_enceinte"
+    name="Femmes enceintes"
+    res_model="tchandra.femme.enceinte"
+    view_mode="kanban,tree,form,graph"/>
+
+    <!-- <act_window id="action_crm_alima_don"
+    name="Dons"
+    res_model="crm.alima.don"
+    view_mode="tree,form,graph" />
+
+    <act_window id="action_crm_alima_code_media"
+    name="Code media"
+    res_model="crm.alima.code.media"
+    view_mode="tree,form" />
+
+    <act_window id="action_crm_alima_engagements"
+    name="Engagements"
+    res_model="crm.alima.engagements"
+    view_mode="tree,form" />
+
+    <act_window id="action_crm_alima_import"
+    name="Import Don"
+    res_model="crm.alima.import.don.credit.coop"
+    view_mode="tree,form" /> -->
+
+    <menuitem id="tchandra_menu" name="TCHANDRA"/>
+    <menuitem id="tchandra_utilisateur" name="Utilisateurs" parent="tchandra_menu" action="action_tchandra_utilisateur"/>
+    <menuitem id="tchandra_femme_enceinte" name="Femmes enceintes" parent="tchandra_menu" action="action_tchandra_femme_enceinte"/>
+    <!-- <menuitem id="crm_alima_don" name="Dons" parent="crm_alima_menu" action="action_crm_alima_don"/>
+    <menuitem id="crm_alima_code_media" name="Code media" parent="crm_alima_menu" action="action_crm_alima_code_media"/>
+    <menuitem id="crm_alima_engagements" name="Engagements" parent="crm_alima_menu" action="action_crm_alima_engagements"/>
+    <menuitem id="crm_alima_import" name="Import Don" parent="crm_alima_menu" action="action_crm_alima_import"/> -->
+    <!-- Menu item to open To-do Task list -->
+</odoo>
