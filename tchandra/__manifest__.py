@@ -9,6 +9,7 @@
         'document',
     ],
     'author': 'Mame Daba DIOUF, ALIMA IT NGO',
+    'description': 'Application TCHANDRA',
     'website': 'alima-ngo.org',
     'license': 'AGPL-3',
     'data': [
