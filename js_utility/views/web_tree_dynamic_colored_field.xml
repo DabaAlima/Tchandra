@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="assets_backend" name="js_utility assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/js_utility/static/src/js/web_tree_dynamic_colored_field.js"></script>
+            <script type="text/javascript" src="/js_utility/static/src/js/web_dynamic_sepator_float.js"></script>
+            <script type="text/javascript" src="/js_utility/static/src/js/web_unblock_ui.js"></script>
+            <link rel="stylesheet" href="/js_utility/static/src/css/web_tree_dynamic_colored_field.css"/>
+        </xpath>
+    </template>
+</odoo>
