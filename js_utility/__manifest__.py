@@ -2,7 +2,7 @@
 {
     'name': 'JS Utility WELE',
     'summary': 'Formating number in the form and allows you to dynamically color fields on tree views',
-    'description': 'Module JS Utility'
+    'description': 'Module JS Utility',
     'category': 'Hidden/Dependency',
     'version': '10.1',
     'depends': ['web'],
