@@ -26,7 +26,6 @@ class Grossesse(models.Model):
     enregistree_par = fields.Char(String="Enregistrée par")
     has_given_birth = fields.Boolean(String="A accouché")
     date_activite_accouchement=fields.Datetime(string="Date d'identification de l'activité d'accouchement")
-    date_accouchement=fields.Date(string="Date accouchement")
     femme_enceinte_grossesse = fields.Many2one('tchandra.femme.enceinte', string='femme_enceinte_grossesse')
     cpn_initiale = fields.Many2one('tchandra.cpn.initiale', string='cpn_initiale')
     autre_cpn = fields.One2many('tchandra.cpn.autre', 'grossesse_autre_cpn', string="Autres CPN")

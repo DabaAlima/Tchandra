@@ -32,13 +32,15 @@
                             <field name="age" string ="Age"/>
                             <field name="village_residence" string ="Village de résidence"/>
                             <field name="niveau_instruction" string ="Niveau d'instruction"/>
+                            <field name="autre_niveau_instruction" attrs="{'invisible': [('niveau_instruction', '!=', 'autre')]}"/>
                             <field name="gestite" string ="Gestité"/>
                             <field name="parite" string ="Parité"/>
                             <field name="dateEnregistrement" string ="Date d'enregistrement de la femme enceinte"/>
+                            <field name="contact_tchandra"/>
                             <field name="fingerprint" string ="Empreinte digitale"/>
-                            <!-- <field name="enregistree_par" string ="Enregistrée par" readonly="1"/>
                             <field name="has_given_birth" string ="A accouché" readonly="1"/>
                             <field name="date_activite_accouchement" string ="Date d'identification de l'activité d'accouchement" readonly="1"/>
+                            <!-- <field name="enregistree_par" string ="Enregistrée par" readonly="1"/>
                             <field name="date_accouchement" string ="Date accouchement" readonly="1"/> -->
                         </group>
                         <group string="Grossesses">
@@ -52,8 +54,8 @@
                     <notebook>
                     <page string="Administration">
                         <group>
-                            <field name="create_uid" string="Crée par" readonly="1" />
-                            <field name="create_date" string="Crée le" readonly="1" />
+                            <field name="create_uid" string="Créé par" readonly="1" />
+                            <field name="create_date" string="Créé le" readonly="1" />
                             <field name="write_uid" string="Mise à jour par" readonly="1" />
                             <field name="write_date" string="Mise à jour le" readonly="1" />
                         </group>

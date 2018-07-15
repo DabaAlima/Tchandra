@@ -22,32 +22,32 @@ SEXE=[
 
 POSITION = [
     ('cephalique','Céphalique'),
-    ('siege','Siége')
+    ('siege','Siège')
 ]
 
 OUI_NON = [
-    ('oui','Oui'),
-    ('non','Non')
+    ('1','Non'),
+    ('2','Oui')
 ]
 
 MODE_ADMISSION = [
-    ('propre_decision','Propre décision'),
-    ('envoyee_par_tchandra','Envoyée par la Tchandra'),
-    ('envoyee_par_autre','Envoyée par une autre personne'),
-    ('referee_par_centre_sante','Référée par le centre de santé'),
-    ('autre','Autre')
+    ('1','Propre décision'),
+    ('2','Envoyée par la Tchandra'),
+    ('3','Envoyée par une autre personne'),
+    ('4','Référée par le centre de santé'),
+    ('5','Autre')
 ]
 
 LIEU_ACCOUCHEMENT_STRUCTURE_SANTE = [
-    ('centre_sante_watta','Watta'),
-    ('centre_sante_dibinintchi','Dibinintchi'),
-    ('hopital_district','Hôpital de district')
+    ('1','Watta'),
+    ('2','Dibinintchi'),
+    ('3','Hôpital de district')
 ]
 
 TYPE_ACCOUCHEMENT = [
-    ('voie_basse_sans_instrument','Voie basse sans instrument'),
-    ('voie_basse_avec_instrument','Voie basse avec instrument'),
-    ('cesarienne','Césarienne')
+    ('1','Voie basse sans instrument'),
+    ('2','Voie basse avec instrument'),
+    ('3','Césarienne')
 ]
 
 STATUT_VITAL_FEMME = [
@@ -63,18 +63,25 @@ STATUT_VITAL_ENFANT = [
 ]
 
 LIEU_ACCOUCHEMENT_HORS_STRUCTURE_SANTE = [
-    ('domicile','A domicile'),
-    ('en_chemin','Sur le chemin entre le domicile et le centre de santé'),
-    ('autre','Autre')
+    ('1','A domicile'),
+    ('2','Sur le chemin entre le domicile et le centre de santé'),
+    ('3','Autre')
 ]
 
 ACCOMPAGNANTS = [
-    ('seule','Seule'),
-    ('proche','Accompagnée par un proche'),
-    ('tchandra','Avec une Tchandra'),
-    ('relais_communautaire','Avec un relai communautaire'),
-    ('personnel_sante','Avec un personnel de santé qualifié'),
-    ('autre','Autre')
+    ('1','Seule'),
+    ('2','Accompagnée par un proche'),
+    ('3','Avec une Tchandra'),
+    ('4','Avec un relai communautaire'),
+    ('5','Avec un personnel de santé qualifié'),
+    ('6','Autre')
+]
+
+NOMBRE_NOUVEAU_NES = [
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4')
 ]
 
 
@@ -100,26 +107,52 @@ class Accouchement(models.Model):
     placenta=fields.Selection(OUI_NON, string="Placenta praevia")
     referencement=fields.Selection(OUI_NON, string="Référencement vers l'hôpital de district")
     motif_referencement=fields.Text(string="Motif de référencement")
-    nombre_nouveau_nes=fields.Integer(string="Nombre de nouveau-nés")
+    nombre_nouveau_nes=fields.Selection(NOMBRE_NOUVEAU_NES, string="Nombre de nouveau-nés")
     statut_vital_femme=fields.Selection(STATUT_VITAL_FEMME, string="Statut vital de la femme")
     date_deces_apres_accouchement=fields.Date(string="Date du décès")
     statut_vital_enfant=fields.Selection(STATUT_VITAL_ENFANT, string="Statut vital de l'enfant")
     date_deces_neonatal=fields.Date(string="Date du décès de l'enfant")
     sexe_enfant=fields.Selection(SEXE, string="Sexe de l'enfant")
-    poids_naissance=fields.Float(string="Poids de naissance")
+    poids_naissance=fields.Char(string="Poids de naissance (kg)")
     poids_non_realise=fields.Boolean(string="Mesure non réalisée")
-    taille_enfant=fields.Integer(string="Taille de l'enfant")
+    taille_enfant=fields.Char(string="Taille de l'enfant (cm)")
     taille_non_realise=fields.Boolean(string="Mesure non réalisée")
-    perimetre_cranien=fields.Integer(string="Périmètre crânien")
+    perimetre_cranien=fields.Char(string="Périmètre crânien (cm)")
     perimetre_cranien_non_realise=fields.Boolean(string="Mesure non réalisée")
-    grossesse = fields.One2many('tchandra.grossesse', 'accouchement', string='Femmes enceintes')
-
+    statut_vital_enfant_deux=fields.Selection(STATUT_VITAL_ENFANT, string="Statut vital de l'enfant")
+    date_deces_neonatal_deux=fields.Date(string="Date du décès de l'enfant")
+    sexe_enfant_deux=fields.Selection(SEXE, string="Sexe de l'enfant")
+    poids_naissance_deux=fields.Char(string="Poids de naissance (kg)")
+    poids_non_realise_deux=fields.Boolean(string="Mesure non réalisée")
+    taille_enfant_deux=fields.Char(string="Taille de l'enfant (cm)")
+    taille_non_realise_deux=fields.Boolean(string="Mesure non réalisée")
+    perimetre_cranien_deux=fields.Char(string="Périmètre crânien (cm)")
+    perimetre_cranien_non_realise_deux=fields.Boolean(string="Mesure non réalisée")
+    statut_vital_enfant_trois=fields.Selection(STATUT_VITAL_ENFANT, string="Statut vital de l'enfant")
+    date_deces_neonatal_trois=fields.Date(string="Date du décès de l'enfant")
+    sexe_enfant_trois=fields.Selection(SEXE, string="Sexe de l'enfant")
+    poids_naissance_trois=fields.Char(string="Poids de naissance (kg)")
+    poids_non_realise_trois=fields.Boolean(string="Mesure non réalisée")
+    taille_enfant_trois=fields.Char(string="Taille de l'enfant (cm)")
+    taille_non_realise_trois=fields.Boolean(string="Mesure non réalisée")
+    perimetre_cranien_trois=fields.Char(string="Périmètre crânien (cm)")
+    perimetre_cranien_non_realise_trois=fields.Boolean(string="Mesure non réalisée")
+    statut_vital_enfant_quatre=fields.Selection(STATUT_VITAL_ENFANT, string="Statut vital de l'enfant")
+    date_deces_neonatal_quatre=fields.Date(string="Date du décès de l'enfant")
+    sexe_enfant_quatre=fields.Selection(SEXE, string="Sexe de l'enfant")
+    poids_naissance_quatre=fields.Char(string="Poids de naissance (kg)")
+    poids_non_realise_quatre=fields.Boolean(string="Mesure non réalisée")
+    taille_enfant_quatre=fields.Char(string="Taille de l'enfant (cm)")
+    taille_non_realise_quatre=fields.Boolean(string="Mesure non réalisée")
+    perimetre_cranien_quatre=fields.Char(string="Périmètre crânien (cm)")
+    perimetre_cranien_non_realise_quatre=fields.Boolean(string="Mesure non réalisée")
     #Hors structure de santé
     lieu_accouchement_hors_structure_sante=fields.Selection(LIEU_ACCOUCHEMENT_HORS_STRUCTURE_SANTE, string="Lieu d'accouchement hors structure de santé")
     autre_lieu_accouchement=fields.Text(string="Autre lieu d'accouchement")
     accompagnants=fields.Selection(ACCOMPAGNANTS, string="Accompagnants lors de l'accouchement")
     autre_accompagnant=fields.Text(string="Autre accompagnant")
     accouchement_hors_structure_sante=fields.Boolean(string="Accouchement hors structure de santé")
+    grossesse = fields.One2many('tchandra.grossesse', 'accouchement', string='Femmes enceintes')
     @api.one
     def incremente_id(self, vals_id):
         res = self
@@ -151,6 +184,105 @@ class Accouchement(models.Model):
         for res in self:
             if res.write_date:
                 res.date_derniere_modification = res.write_date
+    @api.onchange('poids_naissance')
+    def _onchange_poids_naissance(self):
+        for res in self:
+            if res.poids_naissance:
+                try:
+                    float(res.poids_naissance)
+                except:
+                    raise UserError(_("Veuillez entrer un poids valide"))
+    @api.onchange('taille_enfant')
+    def _onchange_taille_enfant(self):
+        for res in self:
+            if res.taille_enfant:
+                try:
+                    int(res.taille_enfant)
+                except:
+                    raise UserError(_("Veuillez entrer une taille valide"))
+    @api.onchange('perimetre_cranien')
+    def _onchange_perimetre_cranien(self):
+        for res in self:
+            if res.perimetre_cranien:
+                try:
+                    int(res.perimetre_cranien)
+                except:
+                    raise UserError(_("Veuillez entrer un pèrimètre crânien valide"))
+    @api.onchange('poids_naissance_deux')
+    def _onchange_poids_naissance_deux(self):
+        for res in self:
+            if res.poids_naissance_deux:
+                try:
+                    float(res.poids_naissance_deux)
+                except:
+                    raise UserError(_("Veuillez entrer un poids valide"))
+    @api.onchange('taille_enfant_deux')
+    def _onchange_taille_enfant_deux(self):
+        for res in self:
+            if res.taille_enfant_deux:
+                try:
+                    int(res.taille_enfant_deux)
+                except:
+                    raise UserError(_("Veuillez entrer une taille valide"))
+    @api.onchange('perimetre_cranien_deux')
+    def _onchange_perimetre_cranien_deux(self):
+        for res in self:
+            if res.perimetre_cranien_deux:
+                try:
+                    int(res.perimetre_cranien_deux)
+                except:
+                    raise UserError(_("Veuillez entrer un pèrimètre crânien valide"))
+    @api.onchange('poids_naissance_trois')
+    def _onchange_poids_naissance_trois(self):
+        for res in self:
+            if res.poids_naissance_trois:
+                try:
+                    float(res.poids_naissance_trois)
+                except:
+                    raise UserError(_("Veuillez entrer un poids valide"))
+    @api.onchange('taille_enfant_trois')
+    def _onchange_taille_enfant_trois(self):
+        for res in self:
+            if res.taille_enfant_trois:
+                try:
+                    int(res.taille_enfant_trois)
+                except:
+                    raise UserError(_("Veuillez entrer une taille valide"))
+    @api.onchange('perimetre_cranien_trois')
+    def _onchange_perimetre_cranien_trois(self):
+        for res in self:
+            if res.perimetre_cranien_trois:
+                try:
+                    int(res.perimetre_cranien_trois)
+                except:
+                    raise UserError(_("Veuillez entrer un pèrimètre crânien valide"))
+    @api.onchange('poids_naissance_quatre')
+    def _onchange_poids_naissance_quatre(self):
+        for res in self:
+            if res.poids_naissance_quatre:
+                try:
+                    float(res.poids_naissance_quatre)
+                except:
+                    raise UserError(_("Veuillez entrer un poids valide"))
+    @api.onchange('taille_enfant_quatre')
+    def _onchange_taille_enfant_quatre(self):
+        for res in self:
+            if res.taille_enfant_quatre:
+                try:
+                    int(res.taille_enfant_quatre)
+                except:
+                    raise UserError(_("Veuillez entrer une taille valide"))
+    @api.onchange('perimetre_cranien_quatre')
+    def _onchange_perimetre_cranien_quatre(self):
+        for res in self:
+            if res.perimetre_cranien_quatre:
+                try:
+                    int(res.perimetre_cranien_quatre)
+                except:
+                    raise UserError(_("Veuillez entrer un pèrimètre crânien valide"))
+
+
+
 
 #     def compute_recence(self):
 #         for rec in self:

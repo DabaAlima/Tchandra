@@ -55,16 +55,18 @@ class FemmeEnceinte(models.Model):
     _description = 'Femme enceinte dans TCHANDRA'
     
     #liste des champs de la classe
-    age =fields.Integer(string='Age')
-    gestite =fields.Integer(string='Gestité')
-    parite =fields.Integer(string='Parité')
+    age =fields.Char(string='Age', size=2)
+    gestite =fields.Char(string='Gestité', size=2)
+    parite =fields.Char(string='Parité', size=2)
     village_residence=fields.Selection(VILLAGE_RESIDENCE, string="Village de résidence")
     niveau_instruction=fields.Selection(NIVEAU_INSTRUCTION, string="Niveau d'instruction")
+    autre_niveau_instruction = fields.Text(string="Autre niveau d'instruction")
     dateEnregistrement=fields.Datetime(string="Date d'enregistrement", compute='_compute_date_creation')
+    contact_tchandra=fields.Boolean(string="Enregistrée par la Tchandra")
     fingerprint =fields.Integer(string='Empreinte digitale')
     # enregistree_par = fields.Char(String="Enregistrée par")
-    # has_given_birth = fields.Boolean(String="A accouché")
-    # date_activite_accouchement=fields.Datetime(string="Date d'identification de l'activité d'accouchement")
+    has_given_birth = fields.Boolean(String="A accouché")
+    date_activite_accouchement=fields.Datetime(string="Date d'identification de l'activité d'accouchement")
     # date_accouchement=fields.Date(string="Date accouchement")
     grossesse = fields.One2many('tchandra.grossesse', 'femme_enceinte_grossesse', string="Grossesses")
     @api.one
@@ -93,3 +95,27 @@ class FemmeEnceinte(models.Model):
         for res in self:
             if res.create_date:
                 res.dateEnregistrement = res.create_date
+    @api.onchange('age')
+    def _onchange_age(self):
+        for res in self:
+            if res.age:
+                try:
+                    int(res.age)
+                except:
+                    raise UserError(_("Veuillez entrer un âge valide (nombre)"))
+    @api.onchange('gestite')
+    def _onchange_gestite(self):
+        for res in self:
+            if res.gestite:
+                try:
+                    int(res.gestite)
+                except:
+                    raise UserError(_("Veuillez entrer une gestité valide (nombre)"))
+    @api.onchange('parite')
+    def _onchange_parite(self):
+        for res in self:
+            if res.parite:
+                try:
+                    int(res.parite)
+                except:
+                    raise UserError(_("Veuillez entrer une parité valide (nombre)"))
