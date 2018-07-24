@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tchandra_identite_femme_enceinte_tree" model="ir.ui.view">
+        <field name="name">tchandra.identite.femme.enceinte.tree</field>
+        <field name="model">tchandra.identite.femme.enceinte</field>
+        <field name="arch" type="xml">
+            <tree string="Identités des femmes enceintes" limit="500">
+                    <field name="id" />
+            </tree>
+        </field>
+    </record>
+    <record id="tchandra_identite_femme_enceinte_form" model="ir.ui.view">
+        <field name="name">tchandra.identite.femme.enceinte.form</field>
+        <field name="model">tchandra.identite.femme.enceinte</field>
+        <field name="arch" type="xml">
+            <form string="Formulaire Identité Femme enceinte">
+                <sheet>
+                    <group>
+                        <group string="Informations générales">
+                            <field name="age" string ="Age"/>
+                            <field name="village_residence" string ="Village de résidence"/>
+                            <field name="niveau_instruction" string ="Niveau d'instruction"/>
+                            <field name="autre_niveau_instruction" attrs="{'invisible': [('niveau_instruction', '!=', 'autre')]}"/>
+                            <field name="gestite" string ="Gestité"/>
+                            <field name="parite" string ="Parité"/>
+                        </group>
+                    </group>
+                    <group name="main_data">
+                      <group name="left" />
+                      <group name="right" />
+                    </group>
+                    <notebook>
+                        <page string="Formulaire">
+                            <group>
+                                <field name="date_creation"/>
+                                <field name="date_derniere_modification"/>
+                            </group>
+                        </page>
+                        <page string="Administration">
+                            <group>
+                                <field name="create_uid" string="Créé par" readonly="1" />
+                                <field name="write_uid" string="Mise à jour par" readonly="1" />
+                            </group>
+                        </page>
+                    </notebook>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
