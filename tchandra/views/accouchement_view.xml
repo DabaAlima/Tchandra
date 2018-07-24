@@ -19,36 +19,25 @@
                         <group string="Informations sur l'accouchement">
                             <field name="date_accouchement"/>
                             <field name="mode_admission"/>
-                            <field name="autre_personne" attrs="{'invisible': [('mode_admission', 'in', ['propre_decision', 'envoyee_par_tchandra', 'referee_par_centre_sante', 'autre'])]}" />
-                            <field name="autre_mode_admission" attrs="{'invisible': [('mode_admission', 'in', ['propre_decision', 'envoyee_par_tchandra', 'referee_par_centre_sante', 'envoyee_par_autre'])]}" />
-                            <field name="lieu_accouchement_structure_sante" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', 'True')]}" />
+                            <field name="autre_personne" attrs="{'invisible': [('mode_admission', 'in', ['1', '2', '3', '4'])]}" />
+                            <field name="autre_mode_admission" attrs="{'invisible': [('mode_admission', 'in', ['1', '2', '3', '4'])]}" />
                             <field name="accouchement_hors_structure_sante" />
-                            <field name="lieu_accouchement_hors_structure_sante" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', 'False')]}" />
-                            <field name="autre_lieu_accouchement" attrs="{'invisible': ['|', ('lieu_accouchement_hors_structure_sante', 'in', ['domicile', 'en_chemin']), ('accouchement_hors_structure_sante', '=', False)]}" />
-                            <field name="accompagnants" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', 'False')]}" />
-                            <field name="autre_accompagnant" attrs="{'invisible': ['|', ('accompagnants', 'in', ['seule', 'proche', 'tchandra', 'relais_communautaire', 'personnel_sante']), ('accouchement_hors_structure_sante', '=', False)]}" />
-                            <field name="presentation"/>
-                            <field name="type_accouchement"/>
-                            <field name="dechirure_perineale"/>
-                            <field name="hemorragie"/>
-                            <field name="placenta"/>
-                            <field name="referencement"/>
-                            <field name="motif_referencement" attrs="{'invisible': [('referencement', '=', 'non')]}" />
+                            <field name="lieu_accouchement_structure_sante" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="lieu_accouchement_hors_structure_sante" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', False)]}" />
+                            <field name="autre_lieu_accouchement" attrs="{'invisible': ['|', ('lieu_accouchement_hors_structure_sante', 'in', ['1', '2']), ('accouchement_hors_structure_sante', '=', False)]}" />
+                            <field name="accompagnants" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', False)]}" />
+                            <field name="autre_accompagnant" attrs="{'invisible': ['|', ('accompagnants', 'in', ['1', '2', '3', '4', '5']), ('accouchement_hors_structure_sante', '=', False)]}" />
+                            <field name="presentation" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="type_accouchement" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="dechirure_perineale" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="hemorragie" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="placenta" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="referencement" attrs="{'invisible': [('accouchement_hors_structure_sante', '=', True)]}" />
+                            <field name="motif_referencement" attrs="{'invisible': ['|', ('referencement', '=', '1'), ('accouchement_hors_structure_sante', '=', True)]}" />
                             <field name="nombre_nouveau_nes"/>
                             <group string="Informations sur la femme">
                                 <field name="statut_vital_femme"/> 
                                 <field name="date_deces_apres_accouchement" attrs="{'invisible': [('statut_vital_femme', 'in', ['vivante', 'decedee_pendant_accouchement'])]}"/>
-                            </group>
-                            <group string="Statut vital du nouveau-né">
-                                <field name="statut_vital_enfant"/> 
-                                <field name="date_deces_neonatal" attrs="{'invisible': [('statut_vital_enfant', 'in', ['vivant', 'mort_ne'])]}"/>
-                                <field name="sexe_enfant"/>
-                                <field name="poids_naissance" attrs="{'invisible': [('poids_non_realise', '=', True)]}" />
-                                <field name="poids_non_realise"/>
-                                <field name="taille_enfant" attrs="{'invisible': [('taille_non_realise', '=', True)]}" />
-                                <field name="taille_non_realise"/>
-                                <field name="perimetre_cranien" attrs="{'invisible': [('perimetre_cranien_non_realise', '=', True)]}" />
-                                <field name="perimetre_cranien_non_realise"/>
                             </group>
                     </group>
                     </group>
@@ -57,6 +46,58 @@
                       <group name="right" />
                     </group>
                     <notebook>
+                        <page string="Nouveau né 1">
+                            <group>
+                                <field name="statut_vital_enfant"/> 
+                                <field name="date_deces_neonatal" attrs="{'invisible': [('statut_vital_enfant', 'in', ['vivant', 'mort_ne'])]}"/>
+                                <field name="sexe_enfant"/>
+                                <field name="poids_naissance" attrs="{'invisible': [('poids_non_realise', '=', True)]}"/>
+                                <field name="poids_non_realise"/>
+                                <field name="taille_enfant" attrs="{'invisible': [('taille_non_realise', '=', True)]}"/>
+                                <field name="taille_non_realise"/>
+                                <field name="perimetre_cranien" attrs="{'invisible': [('perimetre_cranien_non_realise', '=', True)]}"/>
+                                <field name="perimetre_cranien_non_realise"/>
+                            </group>
+                        </page>
+                        <page string="Nouveau né 2" attrs="{'invisible': [('nombre_nouveau_nes', 'not in', ['2', '3', '4'])]}">
+                            <group>
+                                <field name="statut_vital_enfant_deux"/> 
+                                <field name="date_deces_neonatal_deux" attrs="{'invisible': [('statut_vital_enfant_deux', 'in', ['vivant', 'mort_ne'])]}"/>
+                                <field name="sexe_enfant_deux"/>
+                                <field name="poids_naissance_deux" attrs="{'invisible': [('poids_non_realise_deux', '=', True)]}"/>
+                                <field name="poids_non_realise_deux"/>
+                                <field name="taille_enfant_deux" attrs="{'invisible': [('taille_non_realise_deux', '=', True)]}"/>
+                                <field name="taille_non_realise_deux"/>
+                                <field name="perimetre_cranien_deux" attrs="{'invisible': [('perimetre_cranien_non_realise_deux', '=', True)]}"/>
+                                <field name="perimetre_cranien_non_realise_deux"/>
+                            </group>
+                        </page>
+                        <page string="Nouveau né 3" attrs="{'invisible': [('nombre_nouveau_nes', 'not in', ['3', '4'])]}">
+                            <group>
+                                <field name="statut_vital_enfant_trois"/> 
+                                <field name="date_deces_neonatal_trois" attrs="{'invisible': [('statut_vital_enfant_trois', 'in', ['vivant', 'mort_ne'])]}"/>
+                                <field name="sexe_enfant_trois"/>
+                                <field name="poids_naissance_trois" attrs="{'invisible': [('poids_non_realise_trois', '=', True)]}"/>
+                                <field name="poids_non_realise_trois"/>
+                                <field name="taille_enfant_trois" attrs="{'invisible': [('taille_non_realise_trois', '=', True)]}"/>
+                                <field name="taille_non_realise_trois"/>
+                                <field name="perimetre_cranien_trois" attrs="{'invisible': [('perimetre_cranien_non_realise_trois', '=', True)]}"/>
+                                <field name="perimetre_cranien_non_realise_trois"/>
+                            </group>
+                        </page>
+                        <page string="Nouveau né 4" attrs="{'invisible': [('nombre_nouveau_nes', '!=', '4')]}">
+                            <group>
+                                <field name="statut_vital_enfant_quatre"/> 
+                                <field name="date_deces_neonatal_quatre" attrs="{'invisible': [('statut_vital_enfant_quatre', 'in', ['vivant', 'mort_ne'])]}"/>
+                                <field name="sexe_enfant_quatre"/>
+                                <field name="poids_naissance_quatre" attrs="{'invisible': [('poids_non_realise_quatre', '=', True)]}"/>
+                                <field name="poids_non_realise_quatre"/>
+                                <field name="taille_enfant_quatre" attrs="{'invisible': [('taille_non_realise_quatre', '=', True)]}"/>
+                                <field name="taille_non_realise_quatre"/>
+                                <field name="perimetre_cranien_quatre" attrs="{'invisible': [('perimetre_cranien_non_realise_quatre', '=', True)]}"/>
+                                <field name="perimetre_cranien_non_realise_quatre"/>
+                            </group>
+                        </page>
                     <page string="Formulaire">
                         <group>
                             <field name="date_creation"/>

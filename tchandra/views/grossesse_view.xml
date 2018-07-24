@@ -22,7 +22,9 @@
                             <field name="enregistree_par" string ="Enregistrée par" readonly="1"/>
                             <field name="has_given_birth" string ="A accouché" readonly="1"/>
                             <field name="date_activite_accouchement" string ="Date d'identification de l'activité d'accouchement" readonly="1"/>
-                            <field name="date_accouchement" string ="Date accouchement" readonly="1"/>
+                        </group>
+                        <group string="Identité Femme Enceinte">
+                                <field name="identite_femme_enceinte"  string="Identité Femme Enceinte" placeholder="Identité femme enceinte"/>
                         </group>
                         <group string="CPN initiale">
                                 <field name="cpn_initiale"  string="CPN initiale" placeholder="CPN initiale"/>

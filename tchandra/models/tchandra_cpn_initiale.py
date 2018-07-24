@@ -29,7 +29,7 @@ BRUITS_CARDIAQUES_FOETAUX = [
 POSITION = [
     ('1','Non déterminé'),
     ('2','Céphalique'),
-    ('3','Siége')
+    ('3','Siège')
 ]
 
 URIE = [
@@ -62,10 +62,7 @@ NOMBRE_FOETUS = [
     ('1','1'),
     ('2','2'),
     ('3','3'),
-    ('4','4'),
-    ('5','5'),
-    ('6','6'),
-    ('7','7')
+    ('4','4+')
 ]
 
 class ConsultationPrenataleInitiale(models.Model):
@@ -78,21 +75,21 @@ class ConsultationPrenataleInitiale(models.Model):
     #liste des champs de la classe
     date_creation=fields.Datetime(string="Date de création du formulaire", compute='_compute_date_creation')
     date_derniere_modification=fields.Datetime(string="Date de dernière modification", compute='_compute_date_modification')
-    jour_date_dernieres_regles=fields.Integer(string="Jour des dernières régles")
-    mois_date_dernieres_regles=fields.Integer(string="Mois des dernières régles")
-    annee_date_dernieres_regles=fields.Integer(string="Année des dernières régles")
+    jour_date_dernieres_regles=fields.Char(string="Jour des dernières régles", size=2)
+    mois_date_dernieres_regles=fields.Char(string="Mois des dernières régles", size=2)
+    annee_date_dernieres_regles=fields.Char(string="Année des dernières régles", size=4)
     date_dernieres_regles=fields.Boolean(string="Non connue")
     #Examen clinique
-    poids=fields.Integer(string="Poids")
+    poids=fields.Char(string="Poids (kg)", size=3)
     poids_non_realise=fields.Boolean(string="Mesure non réalisée")
-    taille=fields.Integer(string="Taille")
+    taille=fields.Char(string="Taille (cm)", size=3)
     taille_non_realise=fields.Boolean(string="Mesure non réalisée")
-    tension_arterielle_systolique=fields.Integer(string="Tension artérielle systolique")
-    tension_arterielle_diastolique=fields.Integer(string="Tension artérielle diastolique")
+    tension_arterielle_systolique=fields.Char(string="Tension artérielle systolique (mmHg)")
+    tension_arterielle_diastolique=fields.Char(string="Tension artérielle diastolique (mmHg)")
     tension_arterielle_non_realise=fields.Boolean(string="Mesure non réalisée")
-    temperature=fields.Float(string="Température")
+    temperature=fields.Char(string="Température (°C)")
     temperature_non_realise=fields.Boolean(string="Mesure non réalisée")
-    hauteur_uterine=fields.Integer(string="Hauteur utérine")
+    hauteur_uterine=fields.Char(string="Hauteur utérine (cm)")
     hauteur_uterine_non_realise=fields.Boolean(string="Mesure non réalisée")
     grossesse_multiple=fields.Selection(GROSSESSE_MULTIPLE, string="Grossesse multiple")
     nombre_foetus=fields.Selection(NOMBRE_FOETUS,string="Nombre de foetus", default='1')
@@ -100,12 +97,9 @@ class ConsultationPrenataleInitiale(models.Model):
     bruits_cardiaques_foetaux_deux=fields.Selection(BRUITS_CARDIAQUES_FOETAUX, string="Bruits cardiaques foetaux 2e foetus")
     bruits_cardiaques_foetaux_trois=fields.Selection(BRUITS_CARDIAQUES_FOETAUX, string="Bruits cardiaques foetaux 3e foetus")
     bruits_cardiaques_foetaux_quatre=fields.Selection(BRUITS_CARDIAQUES_FOETAUX, string="Bruits cardiaques foetaux 4e foetus")
-    bruits_cardiaques_foetaux_cinq=fields.Selection(BRUITS_CARDIAQUES_FOETAUX, string="Bruits cardiaques foetaux 5e foetus")
-    bruits_cardiaques_foetaux_six=fields.Selection(BRUITS_CARDIAQUES_FOETAUX, string="Bruits cardiaques foetaux 6e foetus")
-    bruits_cardiaques_foetaux_sept=fields.Selection(BRUITS_CARDIAQUES_FOETAUX, string="Bruits cardiaques foetaux 7e foetus")
     position=fields.Selection(POSITION, string="Position")
     #Examens complémentaires
-    taux_hemoglobine=fields.Float(string="Taux hémoglobine")
+    taux_hemoglobine=fields.Char(string="Taux hémoglobine (g/dL)")
     taux_hemoglobine_non_realise=fields.Boolean(string="Mesure non réalisée")
     glycosurie=fields.Selection(URIE, string="Glycosurie")
     proteinurie=fields.Selection(URIE, string="Protéinurie")
@@ -157,6 +151,62 @@ class ConsultationPrenataleInitiale(models.Model):
         for res in self:
             if res.write_date:
                 res.date_derniere_modification = res.write_date
+    @api.onchange('poids')
+    def _onchange_poids(self):
+        for res in self:
+            if res.poids:
+                try:
+                    int(res.poids)
+                except:
+                    raise UserError(_("Veuillez entrer un poids valide"))
+    @api.onchange('taille')
+    def _onchange_taille(self):
+        for res in self:
+            if res.taille:
+                try:
+                    int(res.taille)
+                except:
+                    raise UserError(_("Veuillez entrer une taille valide"))
+    @api.onchange('tension_arterielle_systolique')
+    def _onchange_tension_arterielle_systolique(self):
+        for res in self:
+            if res.tension_arterielle_systolique:
+                try:
+                    int(res.tension_arterielle_systolique)
+                except:
+                    raise UserError(_("Veuillez entrer une tension artérielle systolique valide"))
+    @api.onchange('tension_arterielle_diastolique')
+    def _onchange_tension_arterielle_diastolique(self):
+        for res in self:
+            if res.tension_arterielle_diastolique:
+                try:
+                    int(res.tension_arterielle_diastolique)
+                except:
+                    raise UserError(_("Veuillez entrer une tension artérielle diastolique valide"))
+    @api.onchange('temperature')
+    def _onchange_temperature(self):
+        for res in self:
+            if res.temperature:
+                try:
+                    float(res.temperature)
+                except:
+                    raise UserError(_("Veuillez entrer une température valide"))
+    @api.onchange('hauteur_uterine')
+    def _onchange_hauteur_uterine(self):
+        for res in self:
+            if res.hauteur_uterine:
+                try:
+                    int(res.hauteur_uterine)
+                except:
+                    raise UserError(_("Veuillez entrer une hauteur utérine valide"))
+    @api.onchange('taux_hemoglobine')
+    def _onchange_taux_hemoglobine(self):
+        for res in self:
+            if res.taux_hemoglobine:
+                try:
+                    float(res.taux_hemoglobine)
+                except:
+                    raise UserError(_("Veuillez entrer un taux d'hémoglobine valide"))
 
     # @api.onchange('taux_hemoglobine_non_realise')
     # def _hemoglobine_checked(self):

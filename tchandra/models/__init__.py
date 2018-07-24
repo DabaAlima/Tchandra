@@ -1,6 +1,7 @@
 from . import tchandra_utilisateur
 from . import tchandra_femme_enceinte
 from . import tchandra_grossesse
+from . import tchandra_identite_femme_enceinte
 from . import tchandra_cpn_initiale
 from . import tchandra_cpn_autre
 from . import tchandra_visite_non_planifiee

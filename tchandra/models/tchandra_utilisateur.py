@@ -19,8 +19,7 @@ _logger = logging.getLogger(__name__)
 TYPE_PERSONNE=[
     ('Tchandra','Tchandra'),
     ('Relais communautaire','Relais Communautaire'),
-    ('Personnel de sante','Personnel de santé'),
-    ('Femme enceinte','Femme enceinte'),
+    ('Personnel de sante','Personnel de santé')
 ]
 
 NIVEAU_INSTRUCTION = [
@@ -35,19 +34,19 @@ NIVEAU_INSTRUCTION = [
 ]
 
 VILLAGE_RESIDENCE = [
-    ('watta','Watta'),
-    ('kouri','Kouri'),
-    ('wouni','Wouni'),
-    ('deila_zone_1','Deila (zone 1)'),
-    ('adringa_zone_1','Adringa (zone 1)'),
-    ('fitra','Fitra'),
-    ('aringa','Aringa'),
-    ('rorom','Rorom')
+    ('Watta','Watta'),
+    ('Kouri','Kouri'),
+    ('Wouni','Wouni'),
+    ('Deila (zone 1)','Deila (zone 1)'),
+    ('Adringa (zone 1)','Adringa (zone 1)'),
+    ('Fitra','Fitra'),
+    ('Aringa','Aringa'),
+    ('Rorom','Rorom')
 ]
 
 CENTRE_SANTE_RATTACHEMENT = [
-    ('centre_sante_watta','Centre de santé de Watta'),
-    ('centre_sante_dibinintchi','Centre de santé de Dibinintchi'),
+    ('Watta','Centre de santé de Watta'),
+    ('Dibinintchi','Centre de santé de Dibinintchi'),
 ]
 
 PROFESSION = [
@@ -75,17 +74,16 @@ class Utilisateur(models.Model):
     type_de_personne=fields.Selection(TYPE_PERSONNE, string="Type d'utilisateur")
     village_residence=fields.Selection(VILLAGE_RESIDENCE, string="Village de résidence")
     niveau_instruction=fields.Selection(NIVEAU_INSTRUCTION, string="Niveau d'instruction")
+    autre_niveau_instruction=fields.Text(string="Autre niveau d'instruction")
     centre_sante=fields.Selection(CENTRE_SANTE_RATTACHEMENT, string="Centre de santé de rattachement")
     profession=fields.Selection(PROFESSION, string="Profession")
+    autre_profession=fields.Text(string="Autre profession")
     dateEnregistrement=fields.Datetime(string="Date d'enregistrement", compute='_compute_date_creation')
     fingerprint =fields.Integer(string='Empreinte digitale')
     tchandra=fields.Boolean(string="Tchandra", compute='_is_tchandra')
     relais_communautaire=fields.Boolean(string="Relais communautaire", compute='_is_relais_communautaire')
     personnel_sante=fields.Boolean(string="Personnel de santé", compute='_is_personnel_sante')
-    femme_enceinte=fields.Boolean(string="Femme enceinte", compute='_is_femme_enceinte')
-    mobile = fields.Char(string='Portable 1')
-    mobile2 = fields.Char(string='Portable 2')
-    phone = fields.Char(string='Téléphone professionnel')
+    mobile = fields.Char(string='Numéro de téléphone portable')
     @api.one
     def incremente_id(self, vals_id):
         res = self
@@ -146,9 +144,3 @@ class Utilisateur(models.Model):
             res.personnel_sante = False
             if res.type_de_personne == 'Personnel de sante':
                 res.personnel_sante = True
-    @api.depends('type_de_personne')
-    def _is_femme_enceinte(self):
-        for res in self:
-            res.femme_enceinte = False
-            if res.type_de_personne == 'Femme enceinte':
-                res.femme_enceinte = True

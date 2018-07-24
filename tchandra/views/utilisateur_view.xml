@@ -51,11 +51,13 @@
                     <group>
                         <group string="Informations générales">
                             <field name="type_de_personne" string ="Type de Personne"/>
-                            <field name="age" string ="Age"/>
+                            <field name="age" string ="Age" widget="char"/>
                             <field name="village_residence" string ="Village de résidence" attrs="{'invisible': [('type_de_personne', '=', 'Personnel de sante')]}"/>
                             <field name="niveau_instruction" string ="Niveau d'instruction" attrs="{'invisible': [('type_de_personne', '=', 'Personnel de sante')]}"/>
+                            <field name="autre_niveau_instruction" attrs="{'invisible': ['|', ('type_de_personne', '=', 'Personnel de sante'), ('niveau_instruction', '!=', 'autre')]}"/>
                             <field name="centre_sante" string ="Centre de santé de rattachement" attrs="{'invisible': [('type_de_personne', '=', 'Tchandra')]}"/>
                             <field name="profession" string ="Profession" attrs="{'invisible': [('type_de_personne', 'in', ['Tchandra', 'Relais communautaire'])]}"/>
+                            <field name="autre_profession" attrs="{'invisible': ['|', ('type_de_personne', 'in', ['Tchandra', 'Relais communautaire']), ('profession', '!=', 'autre')]}"/>
                             <field name="dateEnregistrement" string ="Date d'enregistrement"/>
                             <field name="fingerprint" string ="Empreinte digitale"/>
                         </group>
@@ -90,9 +92,7 @@
                                     <field name="email2" widget="email"  string="Email 2" />
                                     <field name="personal_fone" string ="Téléphone personnel 1"/>
                                     <field name="personal_fone2" string ="Téléphone personnel 2"/> -->
-                                    <field name="mobile" widget="phone" string="Portable 1"/>
-                                    <field name="mobile2" widget="phone" string="Portable 2"/>
-                                    <field name="phone" widget="phone" string="Téléphone professionel"/>
+                                    <field name="mobile" widget="phone"/>
                                     <!-- <field name="fax" string="Fax"/> -->
                                 </group>
                                 <!-- <group name="group_contact_left" string=" Adresse 2">
