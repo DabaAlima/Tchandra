@@ -15,37 +15,6 @@ from dateutil import relativedelta
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
-# SEXE=[
-#     ('M', 'M'),
-#     ('F', 'F'),
-#     ('C mixte', 'C mixte'),
-#     ('C M', 'C M'),
-#     ('C F', 'C F'),
-#     ('X indetermine', 'X indéterminé')
-#     ]
-
-NIVEAU_INSTRUCTION = [
-    ('non_scolarise','Non scolarisé'),
-    ('primaire','Primaire'),
-    ('college','Collége'),
-    ('lycee','Lycée'),
-    ('universite','Université'),
-    ('formation_professionnelle','Formation Professionnelle'),
-    ('ecole_coranique','Ecole Coranique'),
-    ('autre','Autre'),
-]
-
-VILLAGE_RESIDENCE = [
-    ('watta','Watta'),
-    ('kouri','Kouri'),
-    ('wouni','Wouni'),
-    ('deila_zone_1','Deila (zone 1)'),
-    ('adringa_zone_1','Adringa (zone 1)'),
-    ('fitra','Fitra'),
-    ('aringa','Aringa'),
-    ('rorom','Rorom')
-]
-
 
 class FemmeEnceinte(models.Model):
     """
@@ -55,16 +24,12 @@ class FemmeEnceinte(models.Model):
     _description = 'Femme enceinte dans TCHANDRA'
     
     #liste des champs de la classe
-    age =fields.Integer(string='Age')
-    gestite =fields.Integer(string='Gestité')
-    parite =fields.Integer(string='Parité')
-    village_residence=fields.Selection(VILLAGE_RESIDENCE, string="Village de résidence")
-    niveau_instruction=fields.Selection(NIVEAU_INSTRUCTION, string="Niveau d'instruction")
     dateEnregistrement=fields.Datetime(string="Date d'enregistrement", compute='_compute_date_creation')
+    contact_tchandra=fields.Boolean(string="Enregistrée par la Tchandra")
     fingerprint =fields.Integer(string='Empreinte digitale')
     # enregistree_par = fields.Char(String="Enregistrée par")
-    # has_given_birth = fields.Boolean(String="A accouché")
-    # date_activite_accouchement=fields.Datetime(string="Date d'identification de l'activité d'accouchement")
+    has_given_birth = fields.Boolean(String="A accouché")
+    date_activite_accouchement=fields.Datetime(string="Date d'identification de l'activité d'accouchement")
     # date_accouchement=fields.Date(string="Date accouchement")
     grossesse = fields.One2many('tchandra.grossesse', 'femme_enceinte_grossesse', string="Grossesses")
     @api.one

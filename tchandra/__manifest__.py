@@ -17,6 +17,7 @@
         'views/utilisateur_view.xml',
         'views/femme_enceinte_view.xml',
         'views/grossesse_view.xml',
+        'views/identite_femme_enceinte_view.xml',
         'views/cpn_initiale_view.xml',
         'views/cpn_autre_view.xml',
         'views/visite_non_planifiee_view.xml',

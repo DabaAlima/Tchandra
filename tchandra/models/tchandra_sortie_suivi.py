@@ -33,9 +33,9 @@ class SortieSuivi(models.Model):
     date_creation=fields.Datetime(string="Date de création du formulaire", compute='_compute_date_creation')
     date_derniere_modification=fields.Datetime(string="Date de dernière modification", compute='_compute_date_modification')
     motif_sortie_suivi=fields.Selection(MOTIF_SORTIE_SUIVI, string="Motif de sortie du suivi")
-    jour_date_sortie=fields.Integer(string="Jour date de sortie")
-    mois_date_sortie=fields.Integer(string="Mois date de sortie")
-    annee_date_sortie=fields.Integer(string="Année date de sortie")
+    jour_date_sortie=fields.Char(string="Jour date de sortie")
+    mois_date_sortie=fields.Char(string="Mois date de sortie")
+    annee_date_sortie=fields.Char(string="Année date de sortie")
     date_sortie_non_connue=fields.Boolean(string="Date non connue")
     grossesse = fields.One2many('tchandra.grossesse', 'sortie_suivi', string='Sortie suivi')
 
