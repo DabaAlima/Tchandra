@@ -71,7 +71,7 @@
                         </group>
                         <group string="Référencement">
                                 <field name="referencement"/>
-                                <field name="motif_referencement" attrs="{'invisible':[('referencement', '=', 'non')]}"/>
+                                <field name="motif_referencement" attrs="{'invisible':[('referencement', '=', '1')]}"/>
                         </group>
                         <group string="Préparation de l'accouchement">
                                 <field name="lieu_accouchement_conseille"/>
