@@ -17,6 +17,8 @@
                 <sheet>
                     <group>
                         <group string="Examen clinique">
+                            <field name="numero_visite"/>
+                            <field name="motif_consultation"/>
                             <group string="Poids">
                                <field name="poids" attrs="{'invisible': [('poids_non_realise', '=', True)]}" />
                                 <field name="poids_non_realise"/> 
@@ -40,7 +42,7 @@
                         </group>
                         <group string="Référencement">
                                 <field name="referencement"/>
-                                <field name="motif_referencement" attrs="{'invisible':[('referencement', '=', 'non')]}"/>
+                                <field name="motif_referencement" attrs="{'invisible':[('referencement', '=', '1')]}"/>
                         </group>
                     </group>
                     <group name="main_data">

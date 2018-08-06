@@ -20,6 +20,8 @@ MOTIF_SORTIE_SUIVI = [
     ('deces_maternel_apres','Décès maternel après accouchement'),
     ('demenagement','Déménagement'),
     ('perdue_de_vue','Perdue de vue'),
+    ('suivi_complet','Suivi complet'),
+    ('autre', 'Autre')
 ]
 
 class SortieSuivi(models.Model):
@@ -33,6 +35,7 @@ class SortieSuivi(models.Model):
     date_creation=fields.Datetime(string="Date de création du formulaire", compute='_compute_date_creation')
     date_derniere_modification=fields.Datetime(string="Date de dernière modification", compute='_compute_date_modification')
     motif_sortie_suivi=fields.Selection(MOTIF_SORTIE_SUIVI, string="Motif de sortie du suivi")
+    autre_motif_sortie_suivi=fields.Text(string="Autre motif de sortie de suivi")
     jour_date_sortie=fields.Char(string="Jour date de sortie")
     mois_date_sortie=fields.Char(string="Mois date de sortie")
     annee_date_sortie=fields.Char(string="Année date de sortie")

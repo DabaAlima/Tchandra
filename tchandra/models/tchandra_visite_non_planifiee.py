@@ -16,49 +16,17 @@ from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
-GROSSESSE_MULTIPLE = [
-    ('oui','Oui'),
-    ('non','Non'),
-    ('non_determine','Non déterminé')
-]
-
-BRUITS_CARDIAQUES_FOETAUX = [
-    ('oui','Oui'),
-    ('non','Non'),
-    ('non_realise','Non réalisé')
-]
-
-POSITION = [
-    ('cephalique','Céphalique'),
-    ('siege','Siége'),
-    ('non_determine','Non déterminé')
-]
-
-URIE = [
-    ('urie_0','0'),
-    ('urie_1','+'),
-    ('urie_2','++'),
-    ('urie_3','+++'),
-    ('urie_4','++++'),
-    ('non_realise','Non réalisé')
-]
-
 TEST = [
-    ('negatif','Négatif'),
-    ('positif','Positif'),
-    ('non_realise','Non réalisé')
+    ('1','Non réalisé'),
+    ('2','Négatif'),
+    ('3','Positif')
 ]
 
 OUI_NON = [
-    ('oui','Oui'),
-    ('non','Non')
+    ('1','Non'),
+    ('2','Oui')
 ]
 
-LIEU_ACCOUCHEMENT_CONSEILLE = [
-    ('centre_sante','Centre de santé'),
-    ('hopital_district','Hôpital de district'),
-    ('autre','Autre')
-]
 
 class VisiteNonPlanifiee(models.Model):
     """
@@ -71,15 +39,15 @@ class VisiteNonPlanifiee(models.Model):
     date_creation=fields.Datetime(string="Date de création du formulaire", compute='_compute_date_creation')
     date_derniere_modification=fields.Datetime(string="Date de dernière modification", compute='_compute_date_modification')
     numero_visite=fields.Integer(string="Numéro de la visite non planifiée")
-    motif_consultation=fields.Text(string="Motif de la consultation")
-    poids=fields.Float(string="Poids")
+    motif_consultation=fields.Text(string="Motif de la consultation", required=True)
+    poids=fields.Char(string="Poids")
     poids_non_realise=fields.Boolean(string="Mesure non réalisée")
-    tension_arterielle_systolique=fields.Integer(string="Tension artérielle systolique")
-    tension_arterielle_diastolique=fields.Integer(string="Tension artérielle diastolique")
+    tension_arterielle_systolique=fields.Char(string="Tension artérielle systolique")
+    tension_arterielle_diastolique=fields.Char(string="Tension artérielle diastolique")
     tension_arterielle_non_realise=fields.Boolean(string="Mesure non réalisée")
-    temperature=fields.Float(string="Température")
+    temperature=fields.Char(string="Température")
     temperature_non_realise=fields.Boolean(string="Mesure non réalisée")
-    taux_hemoglobine=fields.Float(string="Taux d'hémoglobine")
+    taux_hemoglobine=fields.Char(string="Taux d'hémoglobine")
     taux_hemoglobine_non_realise=fields.Boolean(string="Mesure non réalisée")
     test_paludisme=fields.Selection(TEST, string="TDR paludisme")
     referencement=fields.Selection(OUI_NON, string="Référencement vers l'hôpital de district")
@@ -99,8 +67,6 @@ class VisiteNonPlanifiee(models.Model):
     @api.model
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
-        sequence = int(self.env['ir.sequence'].get('tchandra.visite.non.planifiee'))
-        vals['numero_visite'] = sequence
         res= super(VisiteNonPlanifiee, self).create(vals)
 
         if 'id' in vals and res.id != vals['id']:

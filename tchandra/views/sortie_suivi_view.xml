@@ -17,6 +17,7 @@
                 <sheet>
                     <group>
                         <field name="motif_sortie_suivi"/>
+                        <field name="autre_motif_sortie_suivi" attrs="{'invisible':[('motif_sortie_suivi', '!=', 'autre')]}"/>
                         <group string="Date de sortie du suivi">
                             <field name="jour_date_sortie" attrs="{'invisible': [('date_sortie_non_connue', '=', True)]}" />
                             <field name="mois_date_sortie" attrs="{'invisible': [('date_sortie_non_connue', '=', True)]}" />
